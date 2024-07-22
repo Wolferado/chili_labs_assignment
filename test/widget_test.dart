@@ -1,32 +1,34 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
-
+import 'package:chily_labs_assignment/components/fail_fetch_widget.dart';
+import 'package:chily_labs_assignment/components/giphy_container_widget.dart';
+import 'package:chily_labs_assignment/components/search_bar_widget.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
-
 import 'package:chily_labs_assignment/main.dart';
 
 void main() {
-  testWidgets('Basic GIF Search', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
+  testWidgets('App essentials present', (WidgetTester tester) async {
+    await tester.pumpWidget(const ProviderScope(child: MyApp()));
+
+    expect(find.byType(GiphySearchBar), findsOneWidget);
+
+    expect(find.byType(GiphyContainer), findsOneWidget);
+  });
+
+  testWidgets('Failed GIF search simulation', (WidgetTester tester) async {
+    await dotenv.load(fileName: '.env');
+
     await tester.pumpWidget(const ProviderScope(child: MyApp()));
 
     await tester.tap(find.byType(SearchBar));
+
+    // No matter the query, app during the test will receive
+    // mocked up 400 response code.
     await tester.enterText(find.byType(SearchBar), "Dead Cells");
 
-    await tester.pump(const Duration(milliseconds: 2500));
+    await tester.pumpAndSettle(const Duration(seconds: 2));
 
-    expect(find.byWidget(OrientationBuilder(
-      builder: (context, orientation) {
-        return GridView(
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2));
-      },
-    )), findsOneWidget);
+    expect(find.byType(FailFetchComponent), findsOneWidget);
   });
 }

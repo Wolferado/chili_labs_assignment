@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'svg_widget.dart';
 
 class PreFetchComponent extends StatelessWidget {
@@ -10,14 +11,16 @@ class PreFetchComponent extends StatelessWidget {
         child: Column(
       children: [
         SVGWidget(assetName: 'assets/giphy-logo.svg'),
-        Text(
-          'Use the “Search” to look for some fresh GIFs from Giphy.',
-          textAlign: TextAlign.center,
-          style: TextStyle(
-              color: Color(0xFFBEBEBE),
-              fontWeight: FontWeight.w600,
-              fontSize: 20),
-        )
+        Padding(
+            padding: EdgeInsets.all(24.0),
+            child: Text(
+              'Use the “Search” to look for some fresh GIFs from Giphy.',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                  color: Color(0xFFBEBEBE),
+                  fontWeight: FontWeight.w600,
+                  fontSize: 20),
+            ))
       ],
     ));
   }

@@ -12,14 +12,16 @@ class ProcessFetchComponent extends StatelessWidget {
           "assets/giphy-logo-loading.gif",
           scale: 0.60,
         ),
-        const Text(
-          'Fetching GIFs...',
-          textAlign: TextAlign.center,
-          style: TextStyle(
-              color: Color(0xFFBEBEBE),
-              fontWeight: FontWeight.w600,
-              fontSize: 20),
-        )
+        const Padding(
+            padding: EdgeInsets.all(24.0),
+            child: Text(
+              'Fetching GIFs...',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                  color: Color(0xFFBEBEBE),
+                  fontWeight: FontWeight.w600,
+                  fontSize: 20),
+            ))
       ],
     ));
   }

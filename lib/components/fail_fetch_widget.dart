@@ -22,14 +22,16 @@ class FailFetchComponent extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         const SVGWidget(assetName: 'assets/giphy-logo-error.svg'),
-        Text(
-          '${errorCodes[responseCode]}',
-          textAlign: TextAlign.center,
-          style: const TextStyle(
-              color: Color(0xFFBEBEBE),
-              fontWeight: FontWeight.w600,
-              fontSize: 20),
-        )
+        Padding(
+            padding: const EdgeInsets.all(24.0),
+            child: Text(
+              '${errorCodes[responseCode]}',
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                  color: Color(0xFFBEBEBE),
+                  fontWeight: FontWeight.w600,
+                  fontSize: 20),
+            ))
       ],
     ));
   }

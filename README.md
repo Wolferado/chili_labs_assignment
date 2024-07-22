@@ -19,7 +19,7 @@ Tools • Dart 3.4.4 • DevTools 2.34.3
 - Pagination - loading more results when scrolling _(added ScrollController listener)_;
 - Vertical & horizontal orientation support _(GridView CrossAxis amount changes based on orientation)_;
 - Error handling _(added checks for different HTTP response codes, error in API execution and widgets)_;
-- Unit tests - as much as you see fit;
+- Unit tests - as much as you see fit _(added simple Unit tests for app essentials and HTTP request mock up)_;
 
 ### UI
 - Responsive & matching platform guidelines _(I hope?)_;

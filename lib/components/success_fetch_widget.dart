@@ -3,14 +3,6 @@ import 'package:chily_labs_assignment/notifiers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class GiphyScrollPositionStateNotifier extends StateNotifier<int> {
-  GiphyScrollPositionStateNotifier() : super(0);
-
-  void changePositionValue(int newPositionValue) {
-    state = newPositionValue;
-  }
-}
-
 class SuccessFetchComponent extends ConsumerStatefulWidget {
   final List data;
   final WidgetRef ref;
@@ -63,6 +55,7 @@ class _SuccessFetchComponentState extends ConsumerState<SuccessFetchComponent> {
           itemBuilder: (context, index) {
             Image gifToLoad;
 
+            // If statement to use original video URL, if downsized is missing
             if (responseData[index].downsizedVideoUrl != "Unknown") {
               gifToLoad = Image.network(responseData[index].downsizedVideoUrl);
             } else {

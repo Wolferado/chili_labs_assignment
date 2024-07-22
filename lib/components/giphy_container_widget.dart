@@ -9,6 +9,10 @@ import 'package:chily_labs_assignment/components/success_fetch_widget.dart';
 class GiphyContainer extends ConsumerWidget {
   const GiphyContainer({super.key});
 
+  // HTTP codes were analyzed for fetching processes and taken from:
+  // https://developer.mozilla.org/en-US/docs/Web/HTTP/Status
+  // GIPHY API doesn't return code 102!
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     if (ref.watch(giphyResponseStatusStateNotifierProvider) == 0) {

@@ -9,8 +9,9 @@ import 'dart:convert';
 // StateNotifier for the Search Query
 class GiphySearchQueryStateNotifier extends StateNotifier<String> {
   GiphySearchQueryStateNotifier() : super("");
-  Timer? _debounce; // Timer for initiating search after some delay
+  Timer? _debounce; // Timer for initiating the search after some delay
 
+  // Method to change search query state and initate the search
   void changeSearchQuery(String newQuery, WidgetRef ref) {
     state = newQuery; // Change state
 
@@ -22,10 +23,10 @@ class GiphySearchQueryStateNotifier extends StateNotifier<String> {
       _debounce = Timer(const Duration(milliseconds: 1500), () async {
         ref
             .watch(giphyResponseStatusStateNotifierProvider.notifier)
-            .changeResponseStatus(102);
+            .changeResponseStatus(102); // Status for fetching data
         ref
             .read(giphyResponseDataStateNotifierProvider.notifier)
-            .clearResponseData();
+            .clearResponseData(); // Clearing of the old data
         initiateSearch(ref);
         _debounce?.cancel();
       });
@@ -39,6 +40,7 @@ final giphySearchQueryStateNotifierProvider =
   return GiphySearchQueryStateNotifier();
 });
 
+// StateNotifier for the HTTP Response data
 class GiphyResponseDataStateNotifier extends StateNotifier<List<GiphyGif>> {
   GiphyResponseDataStateNotifier() : super(<GiphyGif>[]);
 
@@ -53,11 +55,13 @@ class GiphyResponseDataStateNotifier extends StateNotifier<List<GiphyGif>> {
   }
 }
 
+// Initializing StateNotifier for the HTTP Response data
 final giphyResponseDataStateNotifierProvider =
     StateNotifierProvider<GiphyResponseDataStateNotifier, List>((ref) {
   return GiphyResponseDataStateNotifier();
 });
 
+// StateNotifier for the HTTP Response code
 class GiphyResponseStatusStateNotifier extends StateNotifier<int> {
   GiphyResponseStatusStateNotifier() : super(0);
 
@@ -66,11 +70,13 @@ class GiphyResponseStatusStateNotifier extends StateNotifier<int> {
   }
 }
 
+// Initializing StateNotifier for the HTTP Response code
 final giphyResponseStatusStateNotifierProvider =
     StateNotifierProvider<GiphyResponseStatusStateNotifier, int>((ref) {
   return GiphyResponseStatusStateNotifier();
 });
 
+// Asynchronous method to initiate the search via GIPHY API
 Future<void> initiateSearch(WidgetRef ref) async {
   final http.Response giphyResults;
   final String apiKey;
@@ -78,6 +84,7 @@ Future<void> initiateSearch(WidgetRef ref) async {
   final int currentExistingGifCount =
       ref.read(giphyResponseDataStateNotifierProvider).length;
 
+  // Platform check (based on GIPHY API docs, 3 separate APIs needed)
   if (Platform.isIOS) {
     apiKey = dotenv.env["apiKeyIOS"].toString();
   } else if (Platform.isAndroid) {
@@ -100,7 +107,7 @@ Future<void> initiateSearch(WidgetRef ref) async {
         .watch(giphyResponseDataStateNotifierProvider.notifier)
         .changeResponseData(jsonDecode(giphyResults.body)["data"]);
   } on Exception catch (_) {
-    // Change response code state
+    // Change response code state to faulty to notify user about an error
     ref
         .read(giphyResponseStatusStateNotifierProvider.notifier)
         .changeResponseStatus(400);
