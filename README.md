@@ -34,3 +34,13 @@ Tools • Dart 3.4.4 • DevTools 2.34.3
 - Using an understandable architecture pattern;
 - Page navigation is separate from page widget code (a Coordinator pattern or similar);
 - Network availability handling _(sort of? request is not being proceeded due to network issues - returns 400 HTTP response code)_.
+
+## Preview
+
+<div style="display: flex; justify-content: center; flex-wrap:wrap;">
+    <img alt="Image of app landing page" src='assets/readme_images/App_landing_page.png' width="40%" height="40%"/>
+    <img alt="Image of app data fetching page" src='assets/readme_images/App_fetching.png' width="40%" height="40%"/>
+    <img alt="Image of app error page" src='assets/readme_images/App_error.png' width="40%" height="40%"/>
+    <img alt="Image of app page with data (portrait)" src='assets/readme_images/App_success.png' width="40%" height="40%"/>
+    <img alt="Image of app page with data (landscape)" src='assets/readme_images/App_success_landscape.png' width="80%" height="80%"/>
+</div>
