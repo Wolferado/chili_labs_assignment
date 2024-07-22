@@ -43,4 +43,5 @@ Tools • Dart 3.4.4 • DevTools 2.34.3
     <img alt="Image of app error page" src='assets/readme_images/App_error.png' width="40%" height="40%"/>
     <img alt="Image of app page with data (portrait)" src='assets/readme_images/App_success.png' width="40%" height="40%"/>
     <img alt="Image of app page with data (landscape)" src='assets/readme_images/App_success_landscape.png' width="80%" height="80%"/>
+    <img alt="Image of app detailed giphy page" src='assets/readme_images/App_detailed_giphy.png' width="40%" height="40%"/>
 </div>
