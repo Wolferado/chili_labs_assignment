@@ -1,4 +1,4 @@
-# chily_labs_assignment - Junior Mobile Developer position assignment
+# chili_labs_assignment - Junior Mobile Developer position assignment
 
 ## Information regarding Flutter SDK
 Flutter 3.22.3 • channel stable • https://github.com/flutter/flutter.git
