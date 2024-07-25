@@ -95,7 +95,7 @@ Future<void> initiateSearch(WidgetRef ref) async {
 
   try {
     giphyResults = await http.get(Uri.parse(
-        "https://api.giphy.com/v1/gifs/search?api_key=$apiKey&limit=10&q=$querySearchRef&offset=$currentExistingGifCount&rating=pg-13"));
+        "https://api.giphy.com/v1/gifs/search?api_key=$apiKey&limit=30&q=$querySearchRef&offset=$currentExistingGifCount&rating=pg-13"));
 
     // Change response code state
     ref

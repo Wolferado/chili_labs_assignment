@@ -51,24 +51,33 @@ class _SuccessFetchComponentState extends ConsumerState<SuccessFetchComponent> {
             crossAxisSpacing: 12,
           ),
           controller: scrollController,
-          itemCount: responseData.length,
+          itemCount: responseData.length + 1,
           itemBuilder: (context, index) {
-            Image gifToLoad;
+            // If there are items to load
+            if (index < responseData.length) {
+              Image gifToLoad;
 
-            // If statement to use original video URL, if downsized is missing
-            if (responseData[index].downsizedVideoUrl != "Unknown") {
-              gifToLoad = Image.network(responseData[index].downsizedVideoUrl);
-            } else {
-              gifToLoad = Image.network(responseData[index].originalVideoUrl);
+              // If statement to use original video URL, if downsized is missing
+              if (responseData[index].downsizedVideoUrl != "Unknown") {
+                gifToLoad =
+                    Image.network(responseData[index].downsizedVideoUrl);
+              } else {
+                gifToLoad = Image.network(responseData[index].originalVideoUrl);
+              }
+
+              return GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) =>
+                            DetailedGiphyPage(responseData[index])));
+                  },
+                  child: gifToLoad);
             }
-
-            return GestureDetector(
-                onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) =>
-                          DetailedGiphyPage(responseData[index])));
-                },
-                child: gifToLoad);
+            // Otherwise, show loading icon
+            else {
+              return Center(
+                  child: Image.asset('assets/giphy-logo-loading.gif'));
+            }
           });
     });
 
