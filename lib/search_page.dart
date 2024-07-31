@@ -7,11 +7,12 @@ class SearchPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return const SafeArea(
+        child: Scaffold(
       body: Wrap(
         children: [GiphySearchBar(), GiphyContainer()],
       ),
       backgroundColor: Color(0xFF121212),
-    );
+    ));
   }
 }

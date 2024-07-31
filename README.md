@@ -1,5 +1,13 @@
 # chili_labs_assignment - Junior Mobile Developer position assignment
 
+> [!WARNING]
+> This project has been archived due to these reasons:
+> - Assignment has been finished and received some feedback;
+> - No interview afterwards _(somehow only 4 out of 10 points, even though there are 16 in total? bruh)._
+
+> [!NOTE]
+> This repository contains code for the GIPHY GIF Search Mobile App as an assignment for Chili Labs "Junior Mobile Developer" position.
+
 ## Information regarding Flutter SDK
 Flutter 3.22.3 • channel stable • https://github.com/flutter/flutter.git
 
@@ -36,6 +44,8 @@ Tools • Dart 3.4.4 • DevTools 2.34.3
 - Network availability handling _(sort of? request is not being proceeded due to network issues - returns 400 HTTP response code)_.
 
 ### Feedback & Comments:
+- UI is lacking SafeArea wrappers on iOS, search field is hiding under dynamic island for example _(SafeArea added)_
+- ~~There seems to be some issue with caching gifs~~ **(didn't quite get it)**
 - On scroll too many requests are being made when trying to load more gifs _(this was based on limit of the API request, initial was 10, now changed to 30)_;
 - Scrolling to the bottom lacks loading indicator of loading more gifs _(added loading indicator)_;
 - ~~To avoid human errors when parsing data from network, it’s better to leave it to dedicated tools like json_serializable, freezed which conveniently generates all the necessary code in a clean manner~~ **(tried to create it with freezed package, but unable to accomplish it due to many errors after executing build_runner)**;
